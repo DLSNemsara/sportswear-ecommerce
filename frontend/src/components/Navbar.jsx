@@ -47,8 +47,9 @@ const Navbar = () => {
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
         <NavLink
-          className="py-2 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700"
-          to="http://localhost:5174"
+          className="px-5 py-2 mb-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-full me-2 focus:outline-none hover:bg-gray-100 hover:text-blue-700"
+          // to="http://localhost:5174"
+          to="https://sportswear-admin.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
         >
