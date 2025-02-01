@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a.active hr {
+  display: block;
+}
+
+* {
+  font-family: Outfit;
+}
+
+.parata-regular {
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+@media (max-width: 640px) {
+  a.active {
+    background-color: black;
+    color: #fafafa;
+  }
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
+}

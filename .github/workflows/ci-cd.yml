@@ -1,0 +1,63 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install and Test Frontend
+        working-directory: ./frontend
+        run: |
+          npm install
+          npm run test
+
+      - name: Install and Test Backend
+        working-directory: ./backend
+        run: |
+          npm install
+          npm run test
+
+      - name: Install and Test Admin
+        working-directory: ./admin
+        run: |
+          npm install
+          npm run test
+
+      - name: Build Frontend Docker Image
+        working-directory: ./frontend
+        run: |
+          docker build -t tolawes831/sportswear:frontend .
+
+      - name: Build Backend Docker Image
+        working-directory: ./backend
+        run: |
+          docker build -t tolawes831/sportswear:backend .
+
+      - name: Build Admin Docker Image
+        working-directory: ./admin
+        run: |
+          docker build -t tolawes831/sportswear:admin .
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: tolawes831
+          password: am7y-Q::Pq36y22
+
+      - name: Push Docker Images to Docker Hub
+        run: |
+          docker push tolawes831/sportswear:frontend
+          docker push tolawes831/sportswear:backend
+          docker push tolawes831/sportswear:admin
