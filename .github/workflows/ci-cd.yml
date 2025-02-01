@@ -25,6 +25,8 @@ jobs:
 
       - name: Install and Test Backend
         working-directory: ./backend
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }} # Accessing Stripe secret from GitHub secrets
         run: |
           npm install
           npm run test
