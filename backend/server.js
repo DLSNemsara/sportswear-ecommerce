@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
   res.send("API WORKING");
 });
 
-app.listen(port, () => console.log("Server started on PORT : " + port));
+// app.listen(port, () => console.log("Server started on PORT : " + port));
 
 process.on("SIGINT", () => {
   console.log("Gracefully shutting down...");
