@@ -8,6 +8,19 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      MONGODB_URL: ${{ secrets.MONGODB_URL }}
+      CLOUDINARY_NAME: ${{ secrets.CLOUDINARY_NAME }}
+      CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+      CLOUDINARY_SECRET_KEY: ${{ secrets.CLOUDINARY_SECRET_KEY }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+      RAZORPAY_KEY_SECRET: ${{ secrets.RAZORPAY_KEY_SECRET }}
+      RECAPTCHA_SECRET_KEY: ${{ secrets.RECAPTCHA_SECRET_KEY }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
     steps:
       - name: Use Node.js 20.x
         uses: actions/setup-node@v3
@@ -25,8 +38,6 @@ jobs:
 
       - name: Install and Test Backend
         working-directory: ./backend
-        env:
-          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }} # Accessing Stripe secret from GitHub secrets
         run: |
           npm install
           npm run test
@@ -56,7 +67,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           username: tolawes831
-          password: am7y-Q::Pq36y22
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker Images to Docker Hub
         run: |
