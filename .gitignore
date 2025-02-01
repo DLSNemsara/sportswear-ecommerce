@@ -79,6 +79,12 @@ web_modules/
 # .env.production.local
 # .env.local
 
+# Secret files (Make sure all the .env files are ignored)
+backend/.env
+admin/.env
+frontend/.env
+.env
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
